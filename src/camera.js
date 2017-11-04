@@ -31,6 +31,10 @@ class Camera {
       }
     };
 
+    if (/iP(hone|(o|a)d)/.test(navigator.userAgent)) {
+      constraints.video.facingMode = {exact: 'environment'};
+    }
+
     this._stream = await Camera._wrapErrors(async () => {
       return await navigator.mediaDevices.getUserMedia(constraints);
     });
